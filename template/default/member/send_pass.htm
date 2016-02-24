@@ -1,0 +1,89 @@
+{template 'header'}
+
+<div class="m">
+<br/>
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td width="20">&nbsp;</td>
+<td width="300"><img src="{SKIN_PATH}image/login_p.gif" alt="" width="300" height="35"/></td>
+<td>&nbsp;</td>
+</tr>
+</table>
+
+
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr bgcolor="#2D92DA">
+<td width="20"> </td>
+<td width="300" bgcolor="#FFFFFF" background="{SKIN_PATH}image/login_b.gif">
+	<form method="post" action="{$MOD[linkurl]}send.php"  onsubmit="return Dcheck();">
+	<table width="280" cellpadding="4" cellspacing="4" align="center">
+	<td align="right">
+	<select name="option">
+		<option value="username">用户名</option>
+		{if $MOD['passport']}<option value="passport">通行证</option>{/if}
+		<option value="truename">姓名</option>
+		<option value="company">公司名</option>
+		<option value="mobile">手机号码</option>
+		<option value="userid">会员ID</option>
+	</select>	
+	</td>
+	<td><input name="username" type="text" id="username" style="width:140px"/></td>
+	</tr>
+	<tr>
+	<td align="right">Email：</td>
+	<td class="f_gray"><input name="email" type="text" id="email" style="width:140px"/><br/>请填写您注册时填写的Email</td>
+	</tr>
+	<tr>
+	<tr>
+	<td align="right">验证码：</td>
+	<td>{template 'captcha', 'chip'}</td>
+	</tr>
+	<tr>
+	<td></td>
+	<td><input name="submit" type="submit"  value=" 确 定 "/></a>
+	</td>
+	</tr>
+	</form>
+	</table>
+</td>
+<td width="20">&nbsp;</td>
+<td bgcolor="#FFFFFF" width="350" valign="top"><a href="{$MOD[linkurl]}{$DT[file_register]}"><img src="{SKIN_PATH}image/login_say.gif" alt="" width="350" height="140"/></a></td>
+<td width="30">&nbsp;</td>
+<td class="f_white" style="line-height:180%;">
+还没有会员账号?<br/>立即免费注册一个(仅需要大约1分钟)...<br/><br/>
+<input type="button" value=" 立即免费注册 " class="pd3 px14 f_b ls1" style="background:#F8B003;" onclick="window.location='{$MOD[linkurl]}{$DT[file_register]}';"/>
+</td>
+</tr>
+</table>
+
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td width="20">&nbsp;</td>
+<td width="300"><img src="{SKIN_PATH}image/login_f.gif" alt="" width="300" height="25"/></td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<br/>
+<br/>
+</div>
+	<script type="text/javascript">
+	function Dcheck() {
+		if($('username').value == '') {
+			confirm('请输入名称');
+			$('username').focus();
+			return false;
+		}
+		if($('email').value == '') {
+			confirm('请输入Email');
+			$('email').focus();
+			return false;
+		}
+		if(!is_captcha($('captcha').value)) {
+			confirm('请填写验证码');
+			$('captcha').focus();
+			return false;
+		}
+		return true;
+	}
+	</script>
+{template 'footer'}

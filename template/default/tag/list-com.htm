@@ -1,0 +1,6 @@
+<ul>
+{loop $tags $i $t}
+<li><a href="{if isset($t[linkurl])}{$t[linkurl]}{else}{userurl($t[username])}{/if}" target="_blank">{$t[company]}</a></li>
+{/loop}
+</ul>
+{if $showpage && $pages}<div class="pages">{$pages}</div>{/if}

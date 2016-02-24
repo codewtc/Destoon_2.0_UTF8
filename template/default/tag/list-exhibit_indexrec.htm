@@ -1,0 +1,13 @@
+<table width="100%">
+{loop $tags $i $t}
+{if $i%$cols==0}<tr>{/if}
+<td valign="top">
+<ul>
+<li><a href="{$t[linkurl]}"{if $target} target="{$target}"{/if} title="{$t[alt]}">{$t[title]}</a></li>
+<li>&nbsp;{timetodate($t['fromtime'], 3)} 至 {timetodate($t['totime'], 3)} [{$t[city]}]</li>
+<li title="{$t[city]}{$t[hallname]}">&nbsp;主办：{$t[sponsor]}</li>
+</ul>
+</td>
+{if $i%$cols==($cols-1)}</tr>{/if}
+{/loop}
+</table>

@@ -1,0 +1,13 @@
+<script type="text/javascript">
+var announcetitle = new Array(); 
+var announcehref = new Array(); 
+{if $tags}
+{loop $tags $i $t}
+announcetitle[{$i}] = "[{timetodate($t['addtime'], $datetype)}] {$t[title]}";
+announcehref[{$i}] = "{$t[linkurl]}";
+{/loop}
+{else}
+announcetitle[0] = '暂无公告';
+announcehref[0] = DTPath;
+{/if}
+</script>

@@ -1,0 +1,13 @@
+# Destoon B2B Rewrite Rules
+RewriteEngine On
+RewriteBase /
+RewriteRule ^(.*)-htm-(.*)$ $1.php?$2
+RewriteRule ^(.*)/show-([0-9]+)([\-])?([0-9]+)?\.html$ $1/show.php?itemid=$2&page=$4
+RewriteRule ^(.*)/list-([0-9]+)([\-])?([0-9]+)?\.html$ $1/list.php?catid=$2&page=$4
+RewriteRule ^(.*)/show/([0-9]+)/([0-9]+)?([/])?$ $1/show.php?itemid=$2&page=$3
+RewriteRule ^(.*)/list/([0-9]+)/([0-9]+)?([/])?$ $1/list.php?catid=$2&page=$3
+RewriteRule ^([a-z0-9]+)\.co/(.*)$ company/index.php?homepage=$1&rewrite=$2
+RewriteRule ^(htm)/(.*)$ index.php?&rewrite=$2
+# Apache .conf Rules (Replace line 9 & line 10)
+#RewriteRule ^(.*)/([a-z0-9]+)\.co/(.*)$ $1/company/index.php?homepage=$2&rewrite=$3
+#RewriteRule ^(.*)/htm/(.*)$ $1/index.php?&rewrite=$2

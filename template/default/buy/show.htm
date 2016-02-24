@@ -1,0 +1,121 @@
+{template 'header'}
+<div class="m">
+<div class="m_l f_l">
+	<div class="left_box">		
+		<div class="pos">当前位置: <a href="{DT_PATH}">首页</a> &raquo; <a href="{$MOD[linkurl]}">{$MOD[name]}</a> &raquo; {cat_pos($catid, ' &raquo; ')} &raquo; 信息详情</div>
+		<h1 class="title">{$title}</h1>
+		<div class="info"><span class="f_r"><img src="{SKIN_PATH}image/zoomin.gif" width="16" height="16" alt="放大字体" class="c_p" onclick="fontZoom('+');"/>&nbsp;&nbsp;<img src="{SKIN_PATH}image/zoomout.gif" width="16" height="16"  alt="缩小字体" class="c_p" onclick="fontZoom('-');"/></span>
+		更新日期：{$editdate}&nbsp;&nbsp;浏览次数：<span id="hits">{$hits}</span></div>
+		<br/>
+		{if !$username}
+		<div class="guest_warn"><strong>注意</strong>：本信息发布企业/个人尚未在本站注册，建议优先选择{VIP}会员</div>
+		{/if}
+		
+		<table width="620" align="center">
+		<tr>
+		<td width="290" valign="top">
+			<div class="album">
+				<table width="100%" cellpadding="0" cellspacing="0">
+				<tr align="center">
+				<td width="210" valign="top"><div><span id="abm" title="点击查看大图"><img src="{$albums[0]}" onload="if(this.width>200){this.width=200;}" onclick="window.open(this.src.substring(0, this.src.length-8-ext(this.src).length));" onmouseover="SAlbum(this.src);" onmouseout="HAlbum();"/></span></div></td>
+				<td width="6"> </td>
+				<td width="69" align="center" style="padding-top:5px;background:#F1F1F1;">{loop $thumbs $k $v}<img src="{$v}" width="50" height="50" onmouseover="Album({$k}, '{$albums[$k]}');"class="{if $k}ab_im{else}ab_on{/if}" id="t_{$k}"/>{/loop}</td>
+				</tr>
+				</table>
+			</div>
+		</td>
+		<td valign="top">
+			<div id="imgshow" style="display:none;"></div>
+			<table width="100%" cellpadding="5" cellspacing="5">
+			<tr>
+			<td width="80" class="f_dblue">产品/服务：</td>
+			<td class="f_b" colspan="2">{$tag}&nbsp;</td>
+			</tr>
+			<tr>
+			<td class="f_dblue">需求数量：</td>
+			<td class="f_b f_orange">{$amount}&nbsp;</td>
+			</tr>
+			<tr>
+			<td class="f_dblue">价格要求：</td>
+			<td class="f_b f_orange">{$price} {if $username}<a href="{$MOD[linkurl]}{rewrite('price.php?itemid='.$itemid)}"><img src="{SKIN_PATH}image/btn_price.gif" alt="报价"/></a>{/if}</td>
+			</tr>
+			<tr>
+			<td class="f_dblue">规格要求：</td>
+			<td class="f_b f_orange">{$standard}</td>
+			</tr>
+			<tr>
+			<td class="f_dblue">包装要求：</td>
+			<td class="f_b f_orange">{$pack}</td>
+			</tr>
+			<tr>
+			<td class="f_dblue">所在地：</td>
+			<td>{area_pos($areaid, '&nbsp;')}</td>
+			</tr>
+			<tr>
+			<td class="f_dblue">有效期至：</td>
+			<td>{$todate}{if $expired} <span class="f_red">[已过期]</span>{/if}</td>
+			</tr>
+			</table>
+		</td>
+		</tr>
+		</table>
+		<div class="detail">
+		<span class="f_r">
+		<form method="post" action="{$MODULE[2][linkurl]}favorite.php">
+		<input type="hidden" name="action" value="add"/>
+		<input type="hidden" name="title" value="{$title}"/>
+		<input type="hidden" name="url" value="{$linkurl}"/>
+		<input type="image" src="{SKIN_PATH}image/btn_fav.gif" class="c_p"/>
+		</form>
+		</span>
+		<strong class="f_orange px14">详细介绍</strong>
+		</div>
+		<div class="content c_b" id="content">{$content}</div>
+		<div class="b10">&nbsp;</div>
+		<form method="post" action="{$MODULE[2][linkurl]}sendmail.php" name="sendmail" id="sendmail" target="_blank">
+		<input type="hidden" name="itemid" value="{$itemid}"/> 
+		<input type="hidden" name="title" value="{$title}"/>
+		<input type="hidden" name="linkurl" value="{$linkurl}"/>
+		</form>
+		<center>
+		[ <a href="{$MOD[linkurl]}search.php">{$MOD[name]}搜索</a> ]&nbsp;
+		[ <script type="text/javascript">addFav('加入收藏');</script> ]&nbsp;
+		[ <a href="javascript:$('sendmail').submit();void(0);">告诉好友</a> ]&nbsp;
+		[ <a href="javascript:Print();">打印本文</a> ]&nbsp;
+		[ <a href="javascript:window.close()">关闭窗口</a> ]&nbsp;
+		[ <a href="javascript:window.scrollTo(0,0);">返回顶部</a> ]
+		</center>
+		<br/>
+		<div class="b10">&nbsp;</div>
+		<div class="left_head"><span class="f_r px12"><a href="{$MOD[linkurl]}{$CATEGORY[$catid][linkurl]}">更多..</a>&nbsp;</span>同类{$MOD[name]}</div>
+		<div class="thumb">
+		<!--{tag("moduleid=$moduleid&table=buy&length=14&catid=$catid&condition=status=3 and thumb!=''&pagesize=12&order=".$MOD[order]."&width=80&height=80&cols=6&template=thumb-table", -2)}-->
+		</div>
+		{template 'comment', 'chip'}
+		<br/>
+	</div>
+</div>
+<div class="m_n f_l">&nbsp;</div>
+<div class="m_r f_l">
+	<div class="contact_head">联系方式</div>
+	<div class="contact_body" id="contact">{template 'contact', 'chip'}</div>
+	<div class="b10 c_b"> </div>
+	<div class="box_head_1"><div><strong>该企业最新{$MOD[name]}</strong></div></div>
+	<div class="box_body f_gray li_dot">
+	{if $username}
+	<!--{tag("moduleid=$moduleid&table=buy&condition=status=3 and username='$username'&pagesize=10&datetype=2&order=addtime desc", -1)}-->
+	{else}
+	<!--{tag("moduleid=$moduleid&table=buy&condition=status=3 and mobile='$mobile'&pagesize=10&datetype=2&order=addtime desc", -1)}-->
+	{/if}
+	</div>
+</div>
+</div>
+<script type="text/javascript">
+window.onload = function(){
+	var Imgs = $("content").getElementsByTagName("img");
+	for(var i=0;i<Imgs.length;i++)	{
+		ImgZoom(Imgs[i], {$MOD[max_width]});
+	}
+}
+</script>
+{template 'footer'}

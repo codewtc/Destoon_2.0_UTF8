@@ -1,0 +1,125 @@
+{template 'header'}
+{load('spread.css')}
+<div class="m">
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr bgcolor="#F8F9FB">
+<td width="15">&nbsp;</td>
+<td valign="top">
+<div class="buy_head">我要出价 [如需帮助请致电{$DT[telephone]}]</div>
+<div class="buy_body">
+{if $_userid}
+<form action="index.php" method="post" onsubmit="return check();">
+<input type="hidden" name="action" value="buy"/>
+<input type="hidden" name="mid" value="{$mid}"/>
+<input type="hidden" name="kw" value="{$kw}"/>
+<table cellpadding="5" cellspacing="0" width="100%">
+<tr>
+<td>频道：</td>
+<td><a href="{$MODULE[$mid][linkurl]}">{$MODULE[$mid][name]}</a></td>
+</tr>
+<tr>
+<td>关键词：</td>
+<td><strong>{$kw}</strong></td>
+</tr>
+<tr>
+<td>起价：</td>
+<td class="f_red f_b">{$price}元</td>
+</tr>
+<tr>
+<td>加价幅度：</td>
+<td class="f_b">{if $step}{$step}元{else}不限{/if}</td>
+</tr>
+<tr>
+<td>出价：</td>
+<td><input type="text" name="buy_price" value="{$price}" size="10" id="price" onkeyup="CA();"/></td>
+</tr>
+<tr>
+<td>购买时长：</td>
+<td>
+<select name="buy_month" id="month" onchange="CA();">
+{php for($i=1;$i<=$month;$i++){}
+<option value="{$i}">{$i}月</option>
+{php }}
+</select>
+</td>
+</tr>
+<tr>
+<td>信息ID：</td>
+<td>
+<input type="text" name="buy_tid" value="{if $mid==4}{$_userid}{/if}" size="10" id="tid"/>
+&nbsp;&nbsp;
+<a href="{$MODULE[2][linkurl]}{$DT[file_my]}?mid={$mid}" target="_blank" class="t">[查询]</a>
+<a href="{$MODULE[2][linkurl]}{$DT[file_my]}?mid={$mid}&action=add" target="_blank" class="t">[发布]</a>
+</td>
+</tr>
+<tr>
+<td>帐户余额：</td>
+<td class="f_blue f_b">{$_money}元</td>
+</tr>
+<tr>
+<td>应付总价：</td>
+<td class="f_red f_b" id="payment">{$price}元</td>
+</tr>
+<tr>
+<tr>
+<td>支付密码：</td>
+<td>{template 'password', 'chip'}</td>
+</tr>
+<td> </td>
+<td><input type="submit" name="submit" value="确定购买" class="buy_submit"/></td>
+</tr>
+</table>
+</form>
+{else}
+<div class="buy_login">
+<strong class="f_red">您还没有登录，无法在线提交</strong><br/><br/>
+请先 <a href="{$MODULE[2][linkurl]}{$DT[file_login]}">登录</a> 或 <a href="{$MODULE[2][linkurl]}{$DT[file_register]}">注册为会员</a><br/><br/>
+{if $DT[telephone]}您也可以致电 <span class="f_blue">{$DT[telephone]}</span> 购买<br/><br/>{/if}
+或<a href="{extendurl('guestbook')}index.php?title={$title}">点这里给我们留言</a>
+</div>
+{/if}
+</div>
+<div class="b20">&nbsp;</div>
+</td>
+<td width="10">&nbsp;</td>
+<td width="625"><a href="index.php?kw={urlencode($kw)}" onfocus="this.blur();"><img src="{SKIN_PATH}image/spread.jpg" width="625" height="260"/></a></td>
+</tr>
+</table>
+
+<script type="text/javascript">
+function CA() {
+	if($('price').value.match(/^[0-9]{1,}$/)) {
+		$('payment').innerHTML = $('price').value*$('month').value + '元';
+	} else {
+		$('price').value = '{$price}';
+	}
+}
+function check() {
+	var p = $('price').value;
+	if(p < {$price}) {
+		alert('出价不能低于起价');
+		$('price').focus();
+		return false;
+	}
+	if((p-{$price})%{$step} != 0) {
+		alert('请按加价幅度加价');
+		$('price').focus();
+		return false;
+	}
+	if(p*$('month').value > {$_money}) {
+		alert('帐户余额不足，请先充值');
+		return false;
+	}
+	if($('tid').value.length < 1) {
+		alert('请填写信息ID');
+		$('tid').focus();
+		return false;
+	}
+	if($('password').value.length < 6) {
+		alert('请填写支付密码');
+		$('password').focus();
+		return false;
+	}
+}
+</script>
+{template 'footer'}

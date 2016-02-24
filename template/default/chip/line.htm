@@ -1,0 +1,12 @@
+var dt_userid = {$_userid};
+var dt_username = '{$_username}';
+var dt_member = '<img src="{SKIN_PATH}image/user.gif" width="24" height="13" align="absmiddle"/>&nbsp; 欢迎，';
+{if $_userid}
+dt_member += '<span class="f_red f_b">{$_truename}</span> ({$MG[groupname]})&nbsp;|&nbsp;<a href="{$MODULE[2][linkurl]}">商务中心</a>&nbsp;|&nbsp;{if $_message}<img src="{SKIN_PATH}member/ico_newmessage.gif" width="16" height="12" align="absmiddle" alt=""/> {/if}<a href="{$MODULE[2][linkurl]}message.php">站内信</a>({if $_message}<a href="{$MODULE[2][linkurl]}message.php?action=last"><span class="f_red f_b">{$_message}</span></a>{else}0{/if})&nbsp;|&nbsp;<a href="{$MODULE[2][linkurl]}record.php">我的帐户({$_money}元)</a>&nbsp;|&nbsp;<a href="{$MODULE[2][linkurl]}logout.php">退出</a>';
+{if $_message}
+dt_member += '<embed src="{DT_PATH}file/flash/message.swf" quality="high" type="application/x-shockwave-flash" height="0" width="0"></embed>';
+{/if}
+{else}
+dt_member += '<span class="f_red">客人</span>&nbsp;|&nbsp;<a href="{$MODULE[2][linkurl]}{$DT[file_register]}">免费注册</a>&nbsp;|&nbsp;<a href="{$MODULE[2][linkurl]}{$DT[file_login]}">会员登录</a>&nbsp;|&nbsp;<a href="{$MODULE[2][linkurl]}send.php">忘记密码?</a>';
+{/if}
+Inner('destoon_member', dt_member);

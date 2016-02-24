@@ -1,0 +1,48 @@
+{template 'header'}
+<div class="m">
+	<table cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+	<td valign="top" class="left_menu">
+		<ul>
+		<li><a href="{DT_PATH}">网站首页</a></li>
+		<li id="type_wap"><a href="{$MOD[linkurl]}wap.php">WAP浏览</a></li>
+		</ul>
+	</td>
+	<td width="8"> </td>
+	<td valign="top">
+		<div class="left_box">		
+			<div class="pos">当前位置: <a href="{DT_PATH}">首页</a> &raquo; <a href="{$MOD[linkurl]}wap.php">WAP浏览</a></div>
+			<br/><br/>
+			<table cellpadding="0" cellspacing="0">
+			<tr>
+			<td width="30">&nbsp;</td>
+			<td width="220">
+			<div style="width:180px;height:246px;background:url('{SKIN_PATH}image/wap_bg.gif') no-repeat;"><div style="padding:55px 32px 0 32px;color:#177DDF;font-size:10px;">&nbsp;</div></div>
+			</td>
+			<td width="1" bgcolor="#CCCCCC"> </td>
+			<td width="35">&nbsp;</td>
+			<td>
+			<div style="line-height:24px;">
+			<strong>浏览地址：</strong><br/>
+			<span style="color:#177DDF;">{$wap_url}</span><br/>
+			<br/>
+			<strong>功能简介：</strong><br/>您可以通过WAP上网，随时随地浏览本站商机、资讯，收发站内信件...<br/>
+			<br/>
+			<strong>资费说明：</strong><br/>WAP上网，本站不收取任何费用。但您需要向您的通信服务商缴纳相应的上网费用，收费标准及接入方式请咨询服务商。
+			</div>			
+			</td>
+			<td width="60">&nbsp;</td>
+			<tr>
+			</table>
+			<br/><br/>
+		</div>
+	</td>
+	</tr>
+	</table>
+</div>
+<script type="text/javascript">
+try {
+	$('type_wap').style.backgroundColor = '#CDDCE4';	
+}catch (e){}
+</script>
+{template 'footer'}

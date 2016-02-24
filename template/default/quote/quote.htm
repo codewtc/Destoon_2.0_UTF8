@@ -1,0 +1,20 @@
+<table cellpadding="6" cellspacing="1" width="100%" bgcolor="#C5D7ED">
+<tr align="center" bgcolor="#F1F7FC">
+<td><strong>品名</strong></td>
+<td><strong>型号</strong></td>
+<td><strong>规格</strong></td>
+<td><strong>品牌</strong></td>
+<td><strong>价格</strong></td>
+<td><strong>产地</strong></td>
+</tr>
+{loop $tags $t}
+<tr align="center" bgcolor="#FFFFFF">
+<td>{$t[tag]}</td>
+<td>{if $t[model]}{$t[model]}{else}-{/if}</td>
+<td>{if $t[standard]}{$t[standard]}{else}-{/if}</td>
+<td>{if $t[brand]}{$t[brand]}{else}-{/if}</td>
+<td class="f_orange">{$t[price]}元/{$t[unit]}</td>
+<td>{area_pos($t[areaid], '', 2)}</td>
+</tr>
+{/loop}
+</table>

@@ -1,0 +1,21 @@
+<table cellpadding="4" cellspacing="4" width="100%">
+{loop $tags $k $t}
+	<tr>
+		<td width="135" align="left">&nbsp;<a href="{$t[linkurl]}" target="_blank" title="{$t[alt]}">{$t[title]}</a></td>
+		<td align="left"><a href="{userurl($t[username])}" target="_blank">{$t[company]}</a>{if $t[vip]} <img src="{SKIN_PATH}image/vip.gif" alt="{$t[vip]}级" title="{$t[vip]}级"/>{/if}</td>
+		<td width="100" align="center">
+		{if $t[minsalary] && $t[maxsalary]}
+			{$t[minsalary]}-{$t[maxsalary]}元/月
+		{elseif $t[minsalary]}
+			{$t[minsalary]}元/月以上
+		{elseif $t[maxsalary]}
+			{$t[maxsalary]}元/月以内
+		{else}
+			面议
+		{/if}
+		</td>
+		<td width="90" align="center">{area_pos($t[areaid], '')}</td>
+		<td width="80" align="center" class="px11">{timetodate($t[edittime], $datetype)}</td>
+	</tr>
+{/loop}	
+</table>

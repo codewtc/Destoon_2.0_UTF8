@@ -1,0 +1,189 @@
+{template 'header', $module}
+<div class="pos">欢迎 {$_username} 光临商务中心</div>
+<div style="margin:0 10px 0 10px;">
+{if $_groupid > 5 && !$_edittime}
+	<div class="warn">贵公司尚未完善详细资料！完善的商业信息有助于获得别人的信任，结交潜在的商业伙伴，获取商业机会&nbsp;&nbsp;<a href="{$MOD[linkurl]}edit.php?tab=2" class="t f_b">现在就去完善</a></div>
+{/if}
+	<div class="it" onclick="Tree('my', 'tt');">
+		<div><img src="{SKIN_PATH}member/arrow_close_tt.gif" width="20" height="20" align="right" alt="" id="I_my"/>我的商务中心</div>
+	</div>
+	<div class="ib" id="D_my">
+	<table cellpadding="6" cellspacing="1" class="tb">
+	<tr>
+	<td class="tl">会员帐号</td>
+	<td class="tr">&nbsp;{$_username}</td>
+	<td class="tl">会员ID</td>
+	<td class="tr">&nbsp;{$_userid}</td>
+	</tr>
+	<tr>
+	<td class="tl">我的姓名</td>
+	<td class="tr">&nbsp;{$truename}</td>
+	<td class="tl">会员组</td>
+	<td class="tr">&nbsp;{$MG[groupname]}{if !$vip && $_groupid>5}&nbsp;&nbsp;<a href="{$MOD[linkurl]}vip.php" style="color:red;">升级为{VIP}</a>
+	{/if}</td>
+	</tr>
+	<tr>
+	<td class="tl">电子邮件</td>
+	<td class="tr">&nbsp;{$_email}</td>
+	<td class="tl">收费模式</td>
+	<td class="tr">&nbsp;{if $MG[fee_mode]}包年{else}扣费{/if}</td>
+	</tr>
+	{if $_groupid > 5}
+	<tr>
+	<td class="tl">公司名称</td>
+	<td class="tr">&nbsp;{$company}{if $vip}&nbsp;<img src="{SKIN_PATH}image/vip.gif"/> <img src="{SKIN_PATH}image/vip_{$vip}.gif"/>{/if}</td>
+	<td class="tl">公司主页</td>
+	<td class="tr">&nbsp;<a href="{$userurl}" target="_blank">点击访问</a></td>
+	</tr>
+	{if $vip}
+	<tr>
+	<td class="tl">服务开始日期</td>
+	<td class="tr">&nbsp;{timetodate($fromtime, 3)}</td>
+	<td class="tl">服务结束日期</td>
+	<td class="tr">&nbsp;{timetodate($totime, 3)}&nbsp;{if $expired}<span class="f_red">[已到期]</span>{elseif $havedays < 30}<span class="f_blue">({$havedays}天剩余)</span>{/if}{if !$expired} <a href="{$MOD[linkurl]}renew.php" class="t f_b">续费</a>{/if}</td>
+	</tr>
+	{/if}
+	{/if}
+	<tr>
+	<td class="tl">注册时间</td>
+	<td class="tr">&nbsp;{$regtime}</td>
+	<td class="tl">注册IP</td>
+	<td class="tr">&nbsp;{$regip}</td>
+	</tr>
+	<tr>
+	<td class="tl">登录时间</td>
+	<td class="tr">&nbsp;{$logintime}</td>
+	<td class="tl">登录IP</td>
+	<td class="tr">&nbsp;{$loginip}</td>
+	</tr>
+	</table>
+	</div>
+
+
+	<table cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+	<td valign="top" width="200">
+
+	<div class="it" onclick="Tree('account', 'tt');">
+		<div><img src="{SKIN_PATH}member/arrow_close_tt.gif" width="20" height="20" align="right" alt="" id="I_account"/>我的账户</div>
+	</div>
+	<div class="ib" id="D_account">
+		<table cellspacing="1" cellpadding="6" class="tb">
+		<tr>
+		<td class="tr">
+			<strong style="color:#0240A3;">可用金额</strong>：<strong style="color:#FF6600;font-size:14px;">{$money}</strong> 元
+		</td>
+		</tr>
+		<tr>
+		<td class="tr">
+			<strong style="color:#666666;">锁定金额</strong>：<strong style="color:#888888;font-size:14px;">{$money_lock}</strong> 元
+		</td>
+		</tr>
+		<tr>
+		<td class="tr f_gray">
+			<a href="{$MODULE[2][linkurl]}record.php" class="t">资金流水</a> | 
+			<a href="{$MODULE[2][linkurl]}cash.php" class="t">提现</a> | 
+			<a href="{$MODULE[2][linkurl]}charge.php?action=pay" class="t">充值</a>
+		</td>
+		</tr>
+		</table>
+	</div>
+
+	<div class="it" onclick="Tree('message', 'tt');">
+		<div><img src="{SKIN_PATH}member/arrow_close_tt.gif" width="20" height="20" align="right" alt="" id="I_message"/>我的站内信</div>
+	</div>
+	<div class="ib" id="D_message">
+		<table cellspacing="1" cellpadding="6" class="tb">
+		<tr>
+		<td class="tr">
+			<a href="{$MODULE[2][linkurl]}message.php"><strong style="color:#0240A3;">新信件</strong>：<strong class="f_red">{$message}</strong></a>
+		</td>
+		</tr>
+		<tr>
+		<td class="tr f_gray">
+			<a href="{$MODULE[2][linkurl]}message.php" class="t">收件箱</a> | 
+			<a href="{$MODULE[2][linkurl]}message.php?typeid=1" class="t">询价</a> | 
+			<a href="{$MODULE[2][linkurl]}message.php?typeid=2" class="t">报价</a> | 
+			<a href="{$MODULE[2][linkurl]}message.php?action=send" class="t">写信</a>
+		</td>
+		</tr>
+		</table>
+	</div>
+
+	<div class="it" onclick="Tree('trade', 'tt');">
+		<div><img src="{SKIN_PATH}member/arrow_close_tt.gif" width="20" height="20" align="right" alt="" id="I_trade"/>我的交易</div>
+	</div>
+	<div class="ib" id="D_trade">
+		<table cellspacing="1" cellpadding="6" class="tb">
+		<tr>
+		<td class="tr">
+			<a href="{$MODULE[2][linkurl]}trade.php"><strong style="color:#0240A3;">新订单</strong>：<strong class="f_red">{$trade}</strong></a>
+		</td>
+		</tr>
+		<tr>
+		<td class="tr f_gray">
+			<a href="{$MODULE[2][linkurl]}trade.php" class="t">收到的订单</a> | 
+			<a href="{$MODULE[2][linkurl]}trade.php?action=order" class="t">发出的订单</a> | 
+			<a href="{$MODULE[2][linkurl]}trade.php?action=pay" class="t">付款</a>
+		</td>
+		</tr>
+		</table>
+	</div>
+
+	</td>
+	<td width="10">&nbsp;</td>
+	<td valign="top">
+		<div class="it" onclick="Tree('op', 'tt');">
+			<div><img src="{SKIN_PATH}member/arrow_close_tt.gif" width="20" height="20" align="right" alt="" id="I_op"/>常用操作</div>
+		</div>
+		<div class="ib op" id="D_op">
+			<div>
+				<ul>
+					<li><a href="{$MOD[linkurl]}message.php" class="t"><img src="{SKIN_PATH}member/btn_message.gif" width="32" height="32" alt=""/><br/>站内信</a></li>
+					<li><a href="{$MOD[linkurl]}trade.php" class="t"><img src="{SKIN_PATH}member/btn_trade.gif" width="32" height="32" alt=""/><br/>交易管理</a></li>
+					<li><a href="{$MOD[linkurl]}record.php" class="t"><img src="{SKIN_PATH}member/btn_record.gif" width="32" height="32" alt=""/><br/>资金流水</a></li>
+					<li><a href="{$MOD[linkurl]}friend.php" class="t"><img src="{SKIN_PATH}member/btn_friend.gif" width="32" height="32" alt=""/><br/>我的商友</a></li>
+					<li><a href="{$MOD[linkurl]}favorite.php" class="t"><img src="{SKIN_PATH}member/btn_favorite.gif" width="32" height="32" alt=""/><br/>商机收藏</a></li>
+					<li><a href="{$MOD[linkurl]}{$DT[file_my]}" class="t"><img src="{SKIN_PATH}member/btn_my.gif" width="32" height="32" alt=""/><br/>发布信息</a></li>
+					<li><a href="{$MOD[linkurl]}edit.php" class="t"><img src="{SKIN_PATH}member/btn_edit.gif" width="32" height="32" alt=""/><br/>修改资料</a></li>
+					<li><a href="{$MOD[linkurl]}mail.php" class="t"><img src="{SKIN_PATH}member/btn_mail.gif" width="32" height="32" alt=""/><br/>商机订阅</a></li>
+					<li><a href="{$MOD[linkurl]}style.php" class="t"><img src="{SKIN_PATH}member/btn_template.gif" width="32" height="32" alt=""/><br/>模板设置</a></li>
+					<li><a href="{$MOD[linkurl]}ask.php" class="t"><img src="{SKIN_PATH}member/btn_ask.gif" width="32" height="32" alt=""/><br/>客服中心</a></li>
+				</ul>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+
+		<div class="it" onclick="Tree('note', 'tt');">
+			<div><img src="{SKIN_PATH}member/arrow_close_tt.gif" width="20" height="20" align="right" alt="" id="I_note"/>商务便笺</div>
+		</div>
+		<div class="ib" id="D_note">
+			<form method="post" action="{$MODULE[2][linkurl]}index.php" onsubmit="return check();">
+			<table cellspacing="1" cellpadding="6" class="tb">
+			<tr>
+			<td class="tr"><textarea name="note" id="note" style="width:99%;height:38px;word-break:break-all;color:#444444;">{$note}</textarea></td>
+			</tr>
+			<tr>
+			<td class="tr f_gray">
+			<input type="submit" name="submit" value=" 更 新 " class="btn"/>&nbsp;&nbsp;[可记录一些文字备忘，限1000字]</td>
+			</tr>
+			</table>
+			</form>
+		</div>
+	</td>
+	</tr>
+	</table>
+</div>
+<script type="text/javascript">
+function check() {
+	var l = $('note').value.length;
+	if(l > 1000) {
+		alert('商务便笺请保持在10-1000字，当前已输入 '+l+' 字');
+		$('note').focus();
+		return false;
+	}
+	return true;
+}
+</script>
+<script type="text/javascript">s('index');m('home');</script>
+{template 'footer', $module}

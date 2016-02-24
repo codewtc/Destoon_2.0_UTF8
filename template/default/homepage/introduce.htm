@@ -1,0 +1,62 @@
+{template 'header', $template}
+<div class="dsn" id="pos_show">您当前的位置：<a href="{$COM[linkurl]}">首页</a> &raquo; <a href="{$MENU[$menuid][linkurl]}">{$MENU[$menuid][name]}</a></div>
+
+<div class="main_head"><div><strong>{$MENU[$menuid][name]}</strong></div></div>
+<div class="main_body">
+	<div class="lh18 px13">
+	<table width="98%" cellpadding="3" cellspacing="3" align="center">
+	<tr>
+	<td><img src="{$COM[thumb]}" align="right" style="margin:5px 0 5px 10px;padding:5px;border:#C0C0C0 1px solid;"/>{$content}</td>
+	</tr>
+	</table>
+	</div>
+</div>
+<div class="main_head"><div><strong>公司档案</strong></div></div>
+<div class="main_body">
+	<div class="px13 lh18">
+	<table width="98%" cellpadding="3" cellspacing="1" align="center">
+	<tr>
+	<td width="90" class="f_b">公司名称：</td>
+	<td>{$COM[company]}</td>
+	<td width="90" class="f_b">经营范围：</td>
+	<td>{$COM[business]}</td>
+	</tr>
+	<tr>
+	<td class="f_b">公司类型：</td>
+	<td>{$COM[type]}</td>
+	<td class="f_b">经营模式：</td>
+	<td>{$COM[mode]}</td>
+	</tr>
+	<tr>
+	<td class="f_b">公司规模：</td>
+	<td>{$COM[size]}</td>
+	<td class="f_b">注册资本：</td>
+	<td>{$COM[capital]}万{$COM[regunit]}</td>
+	</tr>
+	<tr>
+	<td class="f_b">注册年份：</td>
+	<td>{$COM[regyear]}</td>
+	<td class="f_b">注 册 地：</td>
+	<td>{$COM[regcity]}</td>
+	</tr>
+	<tr>
+	<td class="f_b">销售的产品：</td>
+	<td>{$COM[sell]}</td>
+	<td class="f_b">采购的产品：</td>
+	<td>{$COM[buy]}</td>
+	</tr>
+	</table>
+	</div>
+</div>
+
+{php $MAIN='联系方式';}
+{template 'main_contact', $template}
+
+{if $could_comment && in_array($moduleid, explode(',', get_module_setting(3, 'comment_module')))}
+<div id="comment_div" style="display:;">
+	<div class="main_head"><div><span class="f_r px12">共<span id="comment_count">0</span>条&nbsp;&nbsp;</span><strong><span id="message_title">相关评论</span></strong></div></div>
+	<div class="main_body"><iframe src="{$MODULE[3][linkurl]}comment.php?mid={$moduleid}&itemid={$COM[userid]}" id="comment" style="width:100%;" scrolling="no" frameborder="0"></iframe>
+	</div>
+</div>
+{/if}
+{template 'footer', $template}

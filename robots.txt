@@ -1,0 +1,14 @@
+# Robots For Destoon
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+Disallow: /cache/
+Disallow: /editor/
+Disallow: /file/
+Disallow: /include/
+Disallow: /install/
+Disallow: /javascript/
+Disallow: /member/
+Disallow: /module/
+Disallow: /skin/
+Disallow: /template/

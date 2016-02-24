@@ -1,0 +1,3 @@
+{loop $tags $k $t}
+<li id="webpage_{$t[itemid]}"><a href="{if !$t[islink]}{DT_URL}{/if}{$t[link]}"{if $target} target="{$target}"{/if}>{$t[title]}</a></li>
+{/loop}

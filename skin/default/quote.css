@@ -1,0 +1,9 @@
+/*
+	[Destoon B2B System] Copyright (c) 2009 Destoon.COM
+	This is NOT a freeware, use is subject to license.txt
+*/
+.quote_head {height:25px;line-height:25px;overflow:hidden;background:url('image/quote_head.gif') no-repeat;padding:0 3px 0 0;}
+.quote_head div {width:80px;text-align:center;font-size:14px;}
+.quote_head_i {color:#666666;padding:2px 0 1px 1px;}
+.quote_body {border:#FF7300 1px solid;padding:11px 0 11px 0;}
+.quote_body li {background:url('image/ico_quote.gif') no-repeat 13px 1px;padding:0 15px 0 35px;color:#666666;height:20px;line-height:20px;overflow:hidden;}

@@ -1,0 +1,6 @@
+<ul>
+{loop $tags $i $t}
+<li title="{$t[alt]}&#13;{timetodate($t['fromtime'], 3)} 至 {timetodate($t['totime'], 3)}&#13;主办：{$t[sponsor]}&#13;展馆：{$t[hallname]}"><span class="f_r">[{$t[city]}] &nbsp;&nbsp; {timetodate($t['fromtime'], 'Y年m月d日')}</span><a href="{$t[linkurl]}"{if $target} target="{$target}"{/if}>{$t[title]}</a></li>
+{/loop}
+</ul>
+{if $showpage && $pages}<div class="pages">{$pages}</div>{/if}

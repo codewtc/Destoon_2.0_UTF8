@@ -1,0 +1,23 @@
+{if $typeid==1}
+{$code}
+{elseif $typeid==2}
+<a href="{$url}" title="{$text_title}" target="_blank">{$text_name}</a>
+{elseif $typeid==3}
+{if $url}<a href="{$url}" target="_blank"><img src="{$image_src}" width="{$width}" height="{$height}" alt="{$image_alt}"/></a>{else}<img src="{$image_src}" width="{$width}" height="{$height}" alt="{$image_alt}"/>{/if}
+{elseif $typeid==4}
+{if $url}<a href="{$url}" target="_blank"><img src="{SKIN_PATH}image/spacer.gif" width="{$width}" height="{$height}" alt="" style="position:absolute;z-index:2;"/></a>{/if}<embed src="{$flash_src}" quality="high" extendspage="http://get.adobe.com/flashplayer/" type="application/x-shockwave-flash" wmode="transparent" width="{$width}" height="{$height}"></embed>
+{elseif $typeid==5}
+	{if $tags}
+		<div id="adword">
+		<div class="adword">{template 'list-'.$ad_module, 'tag'}</div>
+		</div>
+	{/if}
+{elseif $typeid == 6}
+<script type="text/javascript">
+var pics = "{loop $pics $k $v}{if $k}|{/if}{$v}{/loop}";
+var links = "{loop $links $k $v}{if $k}|{/if}{$v}{/loop}";
+var focus_width = {$width};
+var focus_height = {$height};
+document.write('<embed src="'+DTPath+'file/flash/player.swf" wmode="opaque" FlashVars="pics='+pics+'&links='+links+'&texts=&borderwidth='+focus_width+'&borderheight='+focus_height+'&textheight=0" menu="false" bgcolor="#FFFFFF" quality="high" width="'+focus_width+'" height="'+focus_height+'" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" extendspage="http://get.adobe.com/flashplayer/"></embed>');
+</script>
+{/if}

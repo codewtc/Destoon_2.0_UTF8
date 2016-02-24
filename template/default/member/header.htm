@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset={$CFG[charset]}"/>
+<title>{if $head_title}{$head_title}{$DT[seo_delimiter]}{/if}商务中心{$DT[seo_delimiter]}{$DT[sitename]}{$DT[seo_delimiter]}Powered By Destoon</title>
+<meta name="author" content="Destoon B2B System. www.destoon.com"/>
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<link rel="stylesheet" type="text/css" href="{SKIN_PATH}member.css"/>
+<link rel="shortcut icon" href="{DT_PATH}favicon.ico"/>
+<link rel="bookmark" href="{DT_PATH}favicon.ico"/>
+<script type="text/javascript" src="{DT_PATH}javascript/ie.js"></script>
+<script type="text/javascript">
+var DTPath = '{DT_PATH}';
+var SKPath = '{SKIN_PATH}';
+{if DT_DOMAIN}if(!isIE8) document.domain = '{DT_DOMAIN}';{/if}
+</script>
+<script type="text/javascript" src="{DT_PATH}javascript/common.js"></script>
+<script type="text/javascript" src="{DT_PATH}javascript/admin.js"></script>
+<script type="text/javascript" src="{DT_PATH}javascript/page.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+function m(ID) {
+	try{
+		$(ID).className = 'tab_on';
+	}
+	catch(e){}
+}
+function s(ID) {
+	try{
+		$(ID).className = 'sidebar_on';
+	}
+	catch(e){}
+}
+
+function c(ID) {
+	var dds = $(ID).parentNode.getElementsByTagName('dd');	
+	for(var i=0;i<dds.length;i++) {
+		dds[i].style.display = dds[i].style.display == 'none' ? '' : 'none';
+	}
+}
+
+function side() {
+	if($('side').className == 'side_show') {
+		$('side').className = 'side_hide';
+		$('sidebar').style.display = '';
+	} else {
+		$('side').className = 'side_show';
+		$('sidebar').style.display = 'none';
+	}
+}
+
+function Tree(id, sp) {
+	var sp = sp ? '_'+sp : '';
+	if($('I_'+id).src.indexOf('close') == -1) {
+		$('I_'+id).src = '{SKIN_PATH}member/arrow_close'+sp+'.gif';
+		$('D_'+id).style.display='';
+	} else {
+		$('I_'+id).src = '{SKIN_PATH}member/arrow_open'+sp+'.gif';
+		$('D_'+id).style.display='none';
+	}
+}
+{if $_message}
+document.write(sound('message'));
+{/if}
+</script>
+<div id="msgbox" style="display:none;"></div>
+{dmsg()}
+<div class="head"><div class="f_r" style="padding-top:22px;">
+{if $_userid}
+<a href="{$MODULE[2][linkurl]}" class="w" title="我的帐户({$_money}元)">欢迎，<strong>{$_truename}</strong> ({$MG[groupname]})</a>
+ | <a href="{$MODULE[2][linkurl]}record.php" class="w">帐户余额({$_money}元)</a>
+{if $_groupid>5} 
+ | <a href="{$MODULE[3][linkurl]}redirect.php?username={$_username}" target="_blank" class="w" title="我的主页">{$_company}</a>{/if}
+ | {if $_message}<img src="{SKIN_PATH}member/ico_newmessage.gif" width="16" height="12" align="absmiddle" alt=""/> {/if}<a href="{$MODULE[2][linkurl]}message.php" class="w">站内信</a>({if $_message}<a href="{$MODULE[2][linkurl]}message.php?action=last"><strong style="color:#FFFF66;">{$_message}</strong></a>{else}0{/if})
+ | <a href="{$MODULE[2][linkurl]}edit.php" class="w">修改资料</a>
+ | <a href="{$MODULE[2][linkurl]}logout.php?forward=" class="w">退出登录</a>
+ {else}
+  <a href="{$MODULE[2][linkurl]}{$DT[file_login]}" class="w">立即登录</a>
+ | <a href="{$MODULE[2][linkurl]}{$DT[file_register]}" class="w">注册会员</a>
+ {/if}
+ | <a href="{DT_PATH}" class="w">网站首页</a>
+</div><a href="{$MODULE[2][linkurl]}"><img src="{SKIN_PATH}member/head_logo.jpg" alt="商务中心首页"/></a></div>
+<table cellpadding="0" cellspacing="0" width="100%" height="100%">
+<tr>
+<td valign="top" class="sidebar" id="sidebar">
+<div style="padding:0 0 0 15px;">
+	{if $_userid || $show_menu}
+	<div class="left_head" onclick="Tree(0);"><div><img src="{SKIN_PATH}member/arrow_close.gif" width="20" height="20" align="right" alt="" id="I_0"/>我的商务中心</div></div>
+	<div class="left_body" id="D_0">
+		<ul>
+			<li id="index"><span class="f_r"><a href="{$MODULE[2][linkurl]}logout.php?forward=" class="m" onclick="if(!confirm('确实要退出登录吗?')) return false;">退出</a></span><img src="{SKIN_PATH}member/ico_home.gif" width="16" height="16" align="absmiddle" alt=""/> <a href="{$MODULE[2][linkurl]}" class="b">商务中心</a></li>
+			{if $MG[ask] || $show_menu}
+			<li id="ask"><span class="f_r"><a href="{$MODULE[2][linkurl]}ask.php?action=add" class="m">提交</a></span><img src="{SKIN_PATH}member/ico_service.gif" width="16" height="16" align="absmiddle" alt=""/> <a href="{$MODULE[2][linkurl]}ask.php" class="b">客服中心</a></li>
+			{/if}
+		</ul>
+	</div>
+	{/if}
+
+	{if $_userid || $show_menu}
+	<div class="left_head" onclick="Tree(1);"><div><img src="{SKIN_PATH}member/arrow_close.gif" width="20" height="20" align="right" alt="" id="I_1"/>商机管理</div></div>
+	<div class="left_body" id="D_1">
+		<ul>
+			{if $MG[inbox_limit]>-1 || $show_menu}
+			<li id="message"><span class="f_r"><a href="{$MODULE[2][linkurl]}message.php?action=send" class="m">撰写</a></span><img src="{SKIN_PATH}member/ico_message.gif" width="16" height="16" align="absmiddle" alt=""/> <a href="{$MODULE[2][linkurl]}message.php" class="b">站 内 信</a></li>
+			{/if}
+
+			{if $MG[trade_sell] || $show_menu}
+			<li id="trade"><span class="f_r"><a href="{$MODULE[2][linkurl]}trade.php?action=pay" class="m">付款</a></span><img src="{SKIN_PATH}member/ico_trade.gif" width="16" height="16" align="absmiddle" alt=""/> <a href="{$MODULE[2][linkurl]}trade.php" class="b">交易管理</a></li>
+			{/if}
+
+			<li id="record"><span class="f_r"><a href="{$MODULE[2][linkurl]}charge.php?action=pay" class="m">充值</a></span><img src="{SKIN_PATH}member/ico_record.gif" width="16" height="16" align="absmiddle" alt=""/> <a href="{$MODULE[2][linkurl]}record.php" class="b">资金流水</a></li>				
+			
+			{if $MG[friend_limit]>-1 || $show_menu}
+			<li id="friend"><span class="f_r"><a href="{$MODULE[2][linkurl]}friend.php?action=add" class="m">新增</a></span><img src="{SKIN_PATH}member/ico_friend.gif" width="16" height="16" align="absmiddle" alt=""/> <a href="{$MODULE[2][linkurl]}friend.php" class="b">我的商友</a></li>
+			{/if}
+
+			{if $MG[favorite_limit]>-1 || $show_menu}
+			<li id="favorite"><span class="f_r"><a href="{$MODULE[2][linkurl]}favorite.php?action=add" class="m">新增</a></span><img src="{SKIN_PATH}member/ico_favorite.gif" width="16" height="16" align="absmiddle" alt=""/> <a href="{$MODULE[2][linkurl]}favorite.php" class="b">商机收藏</a></li>
+			{/if}
+
+			{if $MG[mail] || $show_menu}
+			<li id="mail"><span class="f_r"><a href="{$MODULE[2][linkurl]}sendmail.php" class="m">电邮</a></span><img src="{SKIN_PATH}member/ico_mail.gif" width="16" height="16" align="absmiddle" alt=""/> <a href="{$MODULE[2][linkurl]}mail.php" class="b">商机订阅</a></li>
+			{/if}
+		</ul>
+	</div>
+	{/if}
+
+{if $MYMODS || $show_menu}
+	<div class="left_head" onclick="Tree(2);"><div><img src="{SKIN_PATH}member/arrow_close.gif" width="20" height="20" align="right" alt="" id="I_2"/>信息管理</div></div>
+	<div class="left_body" id="D_2">
+		<ul>
+		{loop $MENUMODS $k $v}
+			{if $v==9}
+			<li id="mid_job"><span class="f_r"><a href="{$MODULE[2][linkurl]}{$DT[file_my]}?mid=9&action=add" class="m">发布</a></span><img src="{SKIN_PATH}member/ico_job.gif" width="16" height="16" align="absmiddle" alt=""/> <a href="{$MODULE[2][linkurl]}my.php?mid=9" class="b">招聘管理</a></li>
+			{elseif $v==-9}
+			<li id="mid_resume"><span class="f_r"><a href="{$MODULE[2][linkurl]}{$DT[file_my]}?mid=9&action=add&resume=1" class="m">创建</a></span><img src="{SKIN_PATH}member/ico_resume.gif" width="16" height="16" align="absmiddle" alt=""/> <a href="{$MODULE[2][linkurl]}my.php?mid=9&resume=1" class="b">简历管理</a></li>
+			{else}
+				<li id="mid_{$v}"><span class="f_r"><a href="{$MODULE[2][linkurl]}{$DT[file_my]}?mid={$v}&action=add" class="m">发布</a></span><img src="{SKIN_PATH}member/ico_{$MODULE[$v][module]}.gif" width="16" height="16" align="absmiddle" alt=""/> <a href="{$MODULE[2][linkurl]}my.php?mid={$v}" class="b">{$MODULE[$v][name]}管理</a></li>
+			{/if}
+		{/loop}
+		</ul>
+	</div>
+{/if}
+
+{if $MG[homepage] || $show_menu}
+	<div class="left_head" onclick="Tree(3);"><div><img src="{SKIN_PATH}member/arrow_close.gif" width="20" height="20" align="right" alt="" id="I_3"/>主页管理</div></div>
+	<div class="left_body" id="D_3">
+		<ul>
+			<li id="homepage"><span class="f_r"><a href="{$MODULE[2][linkurl]}style.php" class="m">模板</a></span><img src="{SKIN_PATH}member/ico_homepage.gif" width="16" height="16" align="absmiddle" alt=""/> <a href="{$MODULE[2][linkurl]}home.php" class="b">主页设置</a></li>
+
+			<li id="news"><span class="f_r"><a href="{$MODULE[2][linkurl]}news.php?action=add" class="m">发布</a></span><img src="{SKIN_PATH}member/ico_news.gif" width="16" height="16" align="absmiddle" alt=""/> <a href="{$MODULE[2][linkurl]}news.php" class="b">公司新闻</a></li>
+
+			<li id="credit"><span class="f_r"><a href="{$MODULE[2][linkurl]}credit.php?action=add" class="m">添加</a></span><img src="{SKIN_PATH}member/ico_credit.gif" width="16" height="16" align="absmiddle" alt=""/> <a href="{$MODULE[2][linkurl]}credit.php" class="b">荣誉资质</a></li>
+
+			<li id="link"><span class="f_r"><a href="{$MODULE[2][linkurl]}link.php?action=add" class="m">添加</a></span><img src="{SKIN_PATH}member/ico_link.gif" width="16" height="16" align="absmiddle" alt=""/> <a href="{$MODULE[2][linkurl]}link.php" class="b">友情链接</a></li>
+		</ul>
+	</div>
+{/if}
+	<div id="powered">
+	<div><a href="http://www.destoon.com" target="_blank">Powered by Destoon B2B System</a></div>
+	<a href="http://www.destoon.com" target="_blank">Copyright 2008-2009 Destoon.com<br/>
+	All rights reserved</a>
+	</div>
+</div>
+
+</td>
+<td class="side" title="点击关闭/打开侧栏" onclick="side();">
+<div id="side" class="side_hide">&nbsp;</div>
+</td>
+<td valign="top">

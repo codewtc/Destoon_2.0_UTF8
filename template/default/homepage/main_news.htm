@@ -1,0 +1,19 @@
+<div class="main_head"><div><strong>{$MAIN}</strong></div></div>
+<div class="main_body">
+<!--{tag("table=news&condition=status=3 and username='$username'&pagesize=".$main_num[$HM]."&order=addtime desc&template=null", -2)}-->
+	<table cellpadding="2" cellspacing="1" width="100%" align="center">
+	{if $_tags}
+	{loop $_tags $k $v}
+	<tr>
+	<td class="px13" height="25">&middot;<a href="{userurl($username, 'file=news&itemid='.$v[itemid], $domain)}">{$v[title]}</a></td>
+	<td align="center" width="80" class="f_gray px11">{timetodate($v[addtime], 3)}</td>
+	</tr>
+	{/loop}
+	{else}
+	<tr>
+	<td>暂无新闻</td>
+	</tr>
+	{/if}
+	</table>
+</ul>
+</div>

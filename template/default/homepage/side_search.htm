@@ -1,0 +1,18 @@
+<div class="side_head"><div><strong>{$SIDE}</strong></div></div>
+<div class="side_body">
+<form action="{$MODULE[4][linkurl]}home.php" onsubmit="return check_kw();">
+<input type="hidden" name="action" value="search"/>
+<input type="hidden" name="homepage" value="{$username}"/>
+<input type="text" name="kw" value="{if $kw}{$kw}{else}输入关键词{/if}" size="25" id="kw" class="inp" onfocus="if(this.value=='输入关键词')this.value='';"/>
+<div style="padding:10px 0 0 0;">
+<select name="file">
+<option value="sell">产品</option>
+<option value="buy"{if $file=='buy'} selected{/if}>采购</option>
+<option value="news"{if $file=='news'} selected{/if}>新闻</option>
+<option value="credit"{if $file=='credit'} selected{/if}>资质</option>
+<option value="job"{if $file=='job'} selected{/if}>招聘</option>
+</select>&nbsp;
+<input type="submit" value=" 搜 索 " class="sbm"/>
+</div>
+</form>
+</div>

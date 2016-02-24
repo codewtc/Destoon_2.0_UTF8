@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset={$CFG[charset]}" />
+<title>提示信息{$DT[seo_delimiter]}{$DT[sitename]}</title>
+<script type="text/javascript" src="{DT_PATH}javascript/ie.js"></script>
+<script type="text/javascript">
+var DTPath = '{DT_PATH}';
+var SKPath = '{SKIN_PATH}';
+var CKPrex = '{$CFG[cookie_pre]}';
+{if DT_DOMAIN}
+	{if defined('DT_UPLOAD')}
+		if(!isIE8) document.domain = '{DT_DOMAIN}';
+	{else}
+		document.domain = '{DT_DOMAIN}';
+	{/if}
+{/if}
+</script>
+</head>
+<body>
+<script type="text/javascript">
+{if $dmessage}alert('{$dmessage}');{/if}
+{if $dforward}
+	{if $dforward == 'goback'}
+		window.history.back();
+	{else}
+		window.location='{$dforward}';
+	{/if}
+{/if}
+{$extend}
+</script>
+</body>
+</html>

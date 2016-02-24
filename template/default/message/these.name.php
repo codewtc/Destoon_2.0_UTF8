@@ -1,0 +1,12 @@
+<?php
+$names = array (
+  'alert' => 'JS提示信息',
+  'com-notfound' => '公司不存在',
+  'com-opening' => '公司未激活',
+  'list-notfound' => '列表页不存在',
+  'message' => 'HTML提示信息',
+  'noresult' => '无搜素结果',
+  'noright' => '无权限',
+  'show-notfound' => '内容页不存在',
+);
+?>

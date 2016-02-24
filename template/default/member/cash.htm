@@ -1,0 +1,103 @@
+{template 'header', $module}
+<div class="pos">{$head_title}</div>
+<div class="menu">
+<table cellpadding="0" cellspacing="0">
+<tr>
+<td class="tab" id="action"><a href="{$MOD[linkurl]}cash.php"><span>申请提现</span></a></td>
+<td class="tab_nav">&nbsp;</td>
+<td class="tab" id="action_setting"><a href="{$MOD[linkurl]}cash.php?action=setting"><span>帐号设置</span></a></td>
+<td class="tab_nav">&nbsp;</td>
+<td class="tab" id="action_record"><a href="{$MOD[linkurl]}record.php?action=cash"><span>提现记录</span></a></td>
+</tr>
+</table>
+</div>
+{if $action == 'setting'}
+<form method="post" action="{$MOD[linkurl]}cash.php">
+<input type="hidden" name="action" value="{$action}"/>
+<table cellspacing="1" cellpadding="6" class="tb">
+<tr>
+<td class="tl"> <span class="f_red">*</span>收款方式</td>
+<td class="tr">{$bank_select}</td>
+</tr>
+<tr>
+<td class="tl"> <span class="f_red">*</span>收款帐号</td>
+<td class="tr"><input type="text" size="30" name="account" value="{$member[account]}"/> [注意] 此帐号开户名必须为 <strong>{$member[truename]}</strong></td>
+</tr>
+<tr>
+<td class="tl"> <span class="f_red">*</span>支付密码</td>
+<td class="tr">{template 'password', 'chip'}</td>
+</tr>
+<tr>
+<td class="tl"> </td>
+<td class="tr">
+<input type="submit" name="submit" value=" 确 定 " class="btn"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" name="reset" value=" 重 置 " class="btn"/>
+</td>
+</tr>
+</table>
+</form>
+<script type="text/javascript">s('cash');m('action_setting');</script>
+{elseif $action == 'confirm'}
+<form method="post" action="{$MOD[linkurl]}cash.php">
+<input type="hidden" name="action" value="confirm"/>
+<input type="hidden" name="amount" value="{$amount}"/>
+<table cellspacing="1" cellpadding="6" class="tb">
+<tr>
+<td class="tl">金额确认</td>
+<td class="tr" style="line-height:180%;">
+提现金额：<strong>{$amount}</strong><br/>
+手 续 费：<strong>{$fee}</strong><br/>
+实收金额：<strong class="f_red">{$money}</strong><br/>
+可用金额：<strong class="f_blue">{$_money}</strong><br/>
+</td>
+</tr>
+<tr>
+<td class="tl"> <span class="f_red">*</span>支付密码</td>
+<td class="tr">{template 'password', 'chip'}</td>
+</tr>
+<tr>
+<td class="tl"> <span class="f_red">*</span>验证码</td>
+<td class="tr">{template 'captcha', 'chip'}</td>
+</tr>
+<tr>
+<td class="tl"> </td>
+<td class="tr">
+<input type="submit" name="submit" value=" 确 定 " class="btn"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" name="reset" value=" 重 置 " class="btn"/>
+</td>
+</tr>
+</table>
+</form>
+<script type="text/javascript">s('cash');m('action');</script>
+{else}
+<form method="post" action="{$MOD[linkurl]}cash.php">
+<input type="hidden" name="action" value="confirm"/>
+<table cellspacing="1" cellpadding="6" class="tb">
+<tr>
+<td class="tl">我的帐户</td>
+<td class="tr">可用余额 <span class="f_red">{$_money}</span> 元</td>
+</tr>
+<tr>
+<td class="tl">提现说明</td>
+<td class="tr f_gray">
+{if $MOD[cash_times]}- 24小时可提现次数{$MOD[cash_times]}次<br/>{/if}
+{if $MOD[cash_min]}- 单次提现最小金额{$MOD[cash_min]}元<br/>{/if}
+{if $MOD[cash_max]}- 单次提现最大金额{$MOD[cash_max]}元<br/>{/if}
+{if $MOD[cash_fee]}- 提现费率{$MOD[cash_fee]}%<br/>{/if}
+{if $MOD[cash_fee_min]}- 提现费率最小值{$MOD[cash_fee_min]}元<br/>{/if}
+{if $MOD[cash_fee_max]}- 提现费率封顶值{$MOD[cash_fee_max]}元<br/>{/if}
+</td>
+</tr>
+<tr>
+<td class="tl"> <span class="f_red">*</span>提现金额</td>
+<td class="tr"><input type="text" size="10" name="amount"/></td>
+</tr>
+<tr>
+<td class="tl"> </td>
+<td class="tr">
+<input type="submit" value=" 确 定 " class="btn"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" name="reset" value=" 重 置 " class="btn"/>
+</td>
+</tr>
+</table>
+</form>
+<script type="text/javascript">s('cash');m('action');</script>
+{/if}
+{template 'footer', $module}

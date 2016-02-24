@@ -1,0 +1,89 @@
+{template 'header', $template}
+<div class="dsn" id="pos_show">您当前的位置：<a href="{$COM[linkurl]}">首页</a> &raquo; <a href="{$MENU[$menuid][linkurl]}">{$MENU[$menuid][name]}</a></div>
+
+<div class="main_head"><div><strong>{$MENU[$menuid][name]}</strong></div></div>
+<div class="main_body">
+	<div class="px13 lh18">
+	<table width="98%" cellpadding="3" cellspacing="3" align="center">
+	<tr>
+	<td width="100">公司名称：</td>
+	<td>{$COM[company]}</td>
+	</tr>
+	<tr>
+	<td>公司地址：</td>
+	<td>{$COM[address]}</td>
+	</tr>
+	{if $COM[postcode]}
+	<tr>
+	<td>邮政编码：</td>
+	<td>{$COM[postcode]}</td>
+	</tr>
+	{/if}
+	<tr>
+	<td>公司电话：</td>
+	<td>{if $domain}{$COM[telephone]}{else}{anti_spam($COM[telephone])}{/if}</td>
+	</tr>
+	{if $COM[fax]}
+	<tr>
+	<td>公司传真：</td>
+	<td>{if $domain}{$COM[fax]}{else}{anti_spam($COM[fax])}{/if}</td>
+	</tr>
+	{/if}
+	{if $COM[mail]}
+	<tr>
+	<td>电子邮件：</td>
+	<td>{if $domain}{$COM[mail]}{else}{anti_spam($COM[mail])}{/if}</td>
+	</tr>
+	{/if}
+	<tr>
+	<td>公司网址：</td>
+	<td>{if $COM[homepage]}<a href="{$COM[homepage]}" target="_blank">{$COM[homepage]}</a><br/>{/if}
+	<a href="{$COM[linkurl]}" target="_blank">{$COM[linkurl]}</a></td>
+	</tr>
+	{if $COM[truename]}
+	<tr>
+	<td>联 系 人：</td>
+	<td>{$COM[truename]} （{if $COM[gender]==1}先生{else}女士{/if}）</td>
+	</tr>
+	{/if}
+	{if $COM[department]}
+	<tr>
+	<td>部门(职位)：</td>
+	<td>{$COM[department]}{if $COM[career]} （{$COM[career]}）{/if}</td>
+	</tr>
+	{/if}
+	{if $COM[mobile]}
+	<tr>
+	<td>手机号码：</td>
+	<td>{if $domain}{$COM[mobile]}{else}{anti_spam($COM[mobile])}{/if}</td>
+	</tr>
+	{/if}
+	{if $COM[qq]}
+	<tr>
+	<td>QQ：</td>
+	<td><a href="tencent://message/?uin={$COM[qq]}&Site={$COM[company]}&Menu=yes"><img src="http://wpa.qq.com/pa?p=1:{$COM[qq]}:17" width="25" height="17" title="点击QQ交谈/留言" alt=""/></a> {$COM[qq]}</td>
+	</tr>
+	{/if}
+	{if $COM[msn]}
+	<tr>
+	<td>MSN：</td>
+	<td><a href="msnim:chat?contact={$COM[msn]}"><img src="{SKIN_PATH}image/msnchat.gif" width="25" height="17" title="点击MSN交谈/留言" alt=""/></a> {$COM[msn]}</td>
+	</tr>
+	{/if}
+	</table>
+	</div>
+</div>
+{if $map}
+<div class="main_head"><div><strong>公司地图</strong></div></div>
+<div class="main_body">
+	{php $map_width = 300;}
+	{php @include DT_ROOT.'/api/map_show.inc.php';}
+</div>
+{/if}
+{if $could_message}
+<div class="main_head"><div><strong>在线留言</strong></div></div>
+<div class="main_body">
+	<iframe src="{$MODULE[4][linkurl]}home.php?action=message&job=guestbook&&template={$template}&skin={$skin}&username={$username}&sign={crypt_sign($template.$skin.$username)}" name="fra" id="fra" style="width:98%;height:420px;" scrolling="no" frameborder="0"></iframe>
+</div>
+{/if}
+{template 'footer', $template}

@@ -1,0 +1,15 @@
+{if $file != 'link'}
+<div class="side_head"><div><strong>{$SIDE}</strong></div></div>
+<div class="side_body">
+<!--{tag("table=link&condition=status=3 and username='$username'&pagesize=".$side_num[$HS]."&order=listorder desc&template=null", -2)}-->
+<ul>
+{if $_tags}
+{loop $_tags $v}
+<li><a href="{$v[linkurl]}" target="_blank" title="{$v[title]}">{set_style($v[title], $v[style])}</a></li>
+{/loop}
+{else}
+<li>暂无链接</li>
+{/if}
+</ul>
+</div>
+{/if}

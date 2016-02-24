@@ -1,0 +1,26 @@
+{php echo '<?xml version="1.0" encoding="UTF-8"?>';}
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8"/>
+<meta http-equiv="Cache-Control" content="no-cache"/>
+<style type="text/css">
+body {font-size:13px;}
+form {margin:0px;}
+div {margin:auto;}
+.head {background:#E1F0FB;border-bottom:#AACCEE 1px solid;padding:2px 0 2px 3px;margin:0 0 3px 0;}
+.pay {border:#FF6600 1px solid;;padding:2px;}
+</style>
+<title>{$head_title}</title>
+</head>
+<body>
+<div>
+{if $moduleid>1}
+<div class="head">
+<a href="index.php?moduleid={$moduleid}">{$MOD[name]}</a>
+<a href="{$DT_URL}">刷新</a>
+<a href="javascript:window.history.back();">返回</a>
+<a href="index.php">首页</a>
+{if !$_userid}<a href="index.php?moduleid=2&amp;action=login">登录</a>{/if}
+</div>
+{/if}

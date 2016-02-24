@@ -1,0 +1,57 @@
+<div class="main_head"><div><strong>{$MAIN}</strong></div></div>
+<div class="main_body">
+<!--{tag("table=sell&condition=status>2 and username='$username' and elite=1 and thumb!=''&pagesize=".$main_num[$HM]."&order=edittime desc&template=null", -2)}-->
+<div id="quote_0" style="height:180px;overflow:hidden;">
+<div id="quote_1">
+<table cellpadding="0" cellspacing="0" width="100%">
+{loop $_tags $k $v}
+{if $k%5==0}<tr align="center">{/if}
+<td valign="top" width="20%" height="180">
+<div class="thumb" onmouseover="this.className='thumb thumb_on';" onmouseout="this.className='thumb';">
+	<a href="{userurl($username, 'file=sell&itemid='.$v['itemid'], $domain)}"><img src="{imgurl($v[thumb], 1)}" width="100" height="100" alt="{$v[title]}"/></a>
+	<div><a href="{userurl($username, 'file=sell&itemid='.$v['itemid'], $domain)}" title="{$v[title]}">{$v[title]}</a></div>
+	<p>{timetodate($v[edittime], 3)}</p>
+</div>
+</td>
+{if $k%5==4}</tr>{/if}
+{/loop}
+</table>
+</div>
+</div>
+<script type="text/javascript">
+var stopscroll = false;
+var scrollElem = $("quote_0");
+var marqueesHeight = scrollElem.style.height;
+scrollElem.onmouseover = new Function('stopscroll = true');
+scrollElem.onmouseout  = new Function('stopscroll = false');
+var preTop = 0;
+var currentTop = 0;
+var stoptime = 0;
+var leftElem = $("quote_1");
+function init_srolltext(){
+	scrollElem.scrollTop = 0;
+	setInterval('scrollUp()', 10);
+}
+function scrollUp(){
+	if(stopscroll) return;
+	currentTop += 1;
+	if(currentTop == 181) {
+		stoptime += 1;
+		currentTop -= 1;
+		if(stoptime == 300) {
+			currentTop = 0;
+			stoptime = 0;
+		}
+	} else {
+		preTop = scrollElem.scrollTop;
+		scrollElem.scrollTop += 1;
+		if(preTop == scrollElem.scrollTop){
+			scrollElem.scrollTop = 0;
+			scrollElem.scrollTop += 1;
+		}
+	}
+}
+scrollElem.appendChild(leftElem.cloneNode(true));
+init_srolltext();
+</script>
+</div>

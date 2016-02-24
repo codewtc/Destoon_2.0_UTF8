@@ -1,0 +1,15 @@
+{if $file != 'news'}
+<div class="side_head"><div><strong>{$SIDE}</strong></div></div>
+<div class="side_body">
+<!--{tag("table=news&condition=status=3 and username='$username'&pagesize=".$side_num[$HS]."&order=addtime desc&template=null", -2)}-->
+<ul>
+{if $_tags}
+{loop $_tags $v}
+<li title="{$v[title]} ({timetodate($v[addtime], 3)})"><a href="{userurl($username, 'file=news&itemid='.$v['itemid'], $domain)}">{set_style($v[title], $v[style])}</a></li>
+{/loop}
+{else}
+<li>暂无新闻</li>
+{/if}
+</ul>
+</div>
+{/if}

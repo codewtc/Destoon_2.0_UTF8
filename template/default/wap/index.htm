@@ -1,0 +1,6 @@
+{template 'header', 'wap'}
+<img src="logo.png" alt="{$head_title}"/><br/>
+{loop $WAP_MODULE $i $m}
+<a href="index.php?moduleid={$m[moduleid]}">{$m[name]}</a> {if $i%4==3}<br/>{/if}
+{/loop}
+{template 'footer', 'wap'}

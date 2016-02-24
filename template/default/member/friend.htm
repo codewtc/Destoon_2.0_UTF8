@@ -1,0 +1,204 @@
+{template 'header', $module}
+<div class="pos">我的商友</div> 
+<div class="menu">
+<table cellpadding="0" cellspacing="0">
+<tr>
+<td class="tab" id="add"><a href="{$MOD[linkurl]}friend.php?action=add"><span>添加商友</span></a></td>
+<td class="tab_nav">&nbsp;</td>
+<td class="tab" id="home"><a href="{$MOD[linkurl]}friend.php"><span>我的商友</span></a></td>
+<td class="tab_nav">&nbsp;</td>
+<td class="tab" id="type"><a href="{$MOD[linkurl]}type.php?item=friend"><span>商友分类</span></a></td>
+</tr>
+</table>
+</div>
+{if $action == 'add'}
+<form method="post" action="{$MOD[linkurl]}friend.php" onsubmit="return check();">
+<input type="hidden" name="action" value="{$action}"/>
+<table cellpadding="5" cellspacing="1" class="tb">
+<tr>
+<td class="tl">分类</td>
+<td class="tr">{$type_select}&nbsp; <a href="{$MODULE[2][linkurl]}type.php?item=friend" class="t">[管理分类]</a></td>
+</tr>
+<tr>
+<td class="tl">会员名</td>
+<td class="tr"><input type="text" size="20" name="username" id="username" value="{$username}"/> <input type="button" class="btn" value="显示资料" onclick="window.location='{$MOD[linkurl]}friend.php?action=add&username='+$('username').value;"/></td>
+</tr>
+<tr>
+<td class="tl"><span class="f_red">*</span> 姓 名</td>
+<td class="tr"><input type="text" size="20" name="name" id="name" value="{$name}"/> {dstyle('style')} <span id="dname" class="f_red"></span></td>
+</tr>
+<tr>
+<td class="tl">公司名称</td>
+<td class="tr"><input type="text" size="40" name="company" id="company" value="{$company}"/></td>
+</tr>
+<tr>
+<td class="tl">职位</td>
+<td class="tr"><input type="text" size="20" name="career" id="career" value="{$career}"/></td>
+</tr>
+<tr>
+<td class="tl">电话</td>
+<td class="tr"><input type="text" size="20" name="telephone" id="telephone" value="{$telephone}"/></td>
+</tr>
+<tr>
+<td class="tl">手机</td>
+<td class="tr"><input type="text" size="20" name="mobile" id="mobile"/></td>
+</tr>
+<tr>
+<td class="tl">主页</td>
+<td class="tr"><input type="text" size="40" name="homepage" id="homepage" value="{$homepage}"/></td>
+</tr>
+<tr>
+<td class="tl">Email</td>
+<td class="tr"><input type="text" size="30" name="email" id="email"/></td>
+</tr>
+<tr>
+<td class="tl">MSN</td>
+<td class="tr"><input type="text" size="30" name="msn" id="msn" value="{$msn}"/></td>
+</tr>
+<tr>
+<td class="tl">QQ</td>
+<td class="tr"><input type="text" size="20" name="qq" id="qq" value="{$qq}"/></td>
+</tr>
+<tr>
+<td class="tl">备注</td>
+<td class="tr"><input type="text" size="40" name="note" id="note"/></td>
+</tr>
+<tr>
+<td class="tl">&nbsp;</td>
+<td class="tr" height="50"><input type="submit" name="submit" value=" 确 定 " class="btn"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" name="reset" value=" 重 置 " class="btn"/></td>
+</tr>
+</table>
+</form>
+<script type="text/javascript">s('friend');m('add');</script>
+{elseif $action == 'edit'}
+<form method="post" action="{$MOD[linkurl]}friend.php" onsubmit="return check();">
+<input type="hidden" name="action" value="{$action}"/>
+<input type="hidden" name="itemid" value="{$itemid}"/>
+<input type="hidden" name="forward" value="{$forward}"/>
+<table cellpadding="5" cellspacing="1" class="tb">
+<tr>
+<td class="tl">分类</td>
+<td class="tr">{$type_select}&nbsp; <a href="{$MODULE[2][linkurl]}type.php?item=friend" class="t">[管理分类]</a></td>
+</tr>
+<tr>
+<td class="tl">显示顺序</td>
+<td class="tr f_gray"><input type="text" size="3" name="listorder" id="listorder" value="{$listorder}"/> 请填写数字，数字越大越靠前</td>
+</tr>
+<tr>
+<td class="tl">会员名</td>
+<td class="tr"><input type="text" size="20" name="username" id="username" value="{$username}"/></td>
+</tr>
+<tr>
+<td class="tl"><span class="f_red">*</span> 姓名</td>
+<td class="tr"><input type="text" size="20" name="name" id="name" value="{$name}"/> {dstyle('style', $style)} <span id="dname" class="f_red"></span></td>
+</tr>
+<tr>
+<td class="tl">公司名称</td>
+<td class="tr"><input type="text" size="40" name="company" id="company" value="{$company}"/></td>
+</tr>
+<tr>
+<td class="tl">职位</td>
+<td class="tr"><input type="text" size="20" name="career" id="career" value="{$career}"/></td>
+</tr>
+<tr>
+<td class="tl">电话</td>
+<td class="tr"><input type="text" size="20" name="telephone" id="telephone" value="{$telephone}"/></td>
+</tr>
+<tr>
+<td class="tl">手机</td>
+<td class="tr"><input type="text" size="20" name="mobile" id="mobile" value="{$mobile}"/></td>
+</tr>
+<tr>
+<td class="tl">主页</td>
+<td class="tr"><input type="text" size="40" name="homepage" id="homepage" value="{$homepage}"/></td>
+</tr>
+<tr>
+<td class="tl">Email</td>
+<td class="tr"><input type="text" size="30" name="email" id="email" value="{$email}"/></td>
+</tr>
+<tr>
+<td class="tl">MSN</td>
+<td class="tr"><input type="text" size="30" name="msn" id="msn" value="{$msn}"/></td>
+</tr>
+<tr>
+<td class="tl">QQ</td>
+<td class="tr"><input type="text" size="20" name="qq" id="qq" value="{$qq}"/></td>
+</tr>
+<tr>
+<td class="tl">备注</td>
+<td class="tr"><input type="text" size="40" name="note" id="note" value="{$note}"/></td>
+</tr>
+<tr>
+<td class="tl">&nbsp;</td>
+<td class="tr" height="50"><input type="submit" name="submit" value=" 修 改 " class="btn"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value=" 返 回 " class="btn" onclick="history.back(-1);"/></td>
+</tr>
+</table>
+</form>
+<script type="text/javascript">s('friend');m('home');</script>
+{else}
+<form action="{$MOD[linkurl]}friend.php">
+<div class="tt">
+&nbsp;{$fields_select}&nbsp;
+<input type="text" size="50" name="kw" value="{$kw}" title="关键词"/>&nbsp;
+{$type_select}&nbsp;
+<input type="submit" value=" 搜 索 " class="btn"/>
+<input type="button" value=" 重 置 " class="btn" onclick="window.location='{$MOD[linkurl]}friend.php';"/>
+</div>
+</form>
+<table cellpadding="5" cellspacing="1" width="100%" bgcolor="#CDCDCD">
+{loop $friends $k $v}
+{if $k%2==0}<tr>{/if}
+<td valign="top" width="50%" bgcolor="#FFFFFF" onmouseover="this.style.backgroundColor='#E7ECFF';" onmouseout="this.style.backgroundColor='#FFFFFF';" title="{$v[note]}">
+{if $v}
+<table cellpadding="2" cellspacing="2" width="96%" align="center">
+<tr>
+<td height="22"><strong>{$v[dcompany]}</strong></td>
+</tr>
+<tr>
+<td height="20">{$v[name]}{if $v[career]} ({$v[career]}){/if}</td>
+</tr>
+<tr>
+<td height="20">电话：{$v[telephone]}</td>
+</tr>
+<tr>
+<td height="20">手机：{$v[mobile]}</td>
+</tr>
+<tr>
+<td height="20">
+<span class="f_r" title="添加时间 {$v[addtime]}">
+<a href="{$MOD[linkurl]}friend.php?typeid={$v[typeid]}" class="t">[{$v[type]}]</a>&nbsp;
+<a href="{$MOD[linkurl]}friend.php?action=edit&itemid={$v[itemid]}" class="t">[修改]</a>&nbsp;
+<a href="{$MOD[linkurl]}friend.php?action=delete&itemid={$v[itemid]}" onclick="return confirm('确定要删除吗？此操作将不可撤销');" class="t">[删除]</a>&nbsp;
+</span>
+{if $v[homepage]}<a href="{$v[homepage]}" target="_blank"><img width="16" height="16" src="{SKIN_PATH}image/homepage.gif" title="公司主页" alt=""/></a>{/if} 
+{if $v[username]} <a href="{$MOD[linkurl]}message.php?action=send&touser={$v[username]}"><img width="16" height="16" src="{SKIN_PATH}image/msg.gif" title="发送站内信" alt=""/></a>{/if} 
+{if $v[email]}<a href="{$MOD[linkurl]}sendmail.php?email={$v[email]}"><img width="16" height="16" src="{SKIN_PATH}image/email.gif" title="发送Email {$v[email]}" alt=""/></a>{/if} 
+{if $v[msn]}<a href="msnim:chat?contact={$v[msn]}"><img width="16" height="16" src="{SKIN_PATH}image/msn.gif" title="MSN交谈 {$v[msn]}" alt=""/></a>{/if} 
+{if $v[qq]}<a href="tencent://message/?uin={$v[qq]}&Site={$DT['sitename']}&Menu=yes"><img width="16" height="16" src="http://wpa.qq.com/pa?p=1:{$v[qq]}:4" title="QQ交谈 {$v[qq]}" alt=""/></a>{/if}&nbsp;</td>
+</tr>
+</table>
+{else}
+&nbsp;
+{/if}
+</td>
+{if $k%2==1}</tr>{/if}
+{/loop}
+</table>
+{if $MG[friend_limit]}
+<div class="limit">商友上限 <span class="f_b f_red">{$MG[friend_limit]}</span> 人&nbsp;&nbsp;&nbsp;当前已加 <span class="f_b">{$limit_used}</span> 人&nbsp;&nbsp;&nbsp;还可以加 <span class="f_b f_blue">{$limit_free}</span> 人</div>
+{/if}
+<div class="pages">{$pages}</div>
+<script type="text/javascript">s('friend');m('home');</script>
+{/if}
+{if $action=='add' || $action=='edit'}
+<script type="text/javascript">
+function check() {
+	if($('name').value == '') {
+		Dmsg('请填写姓名', 'name');
+		return false;
+	}
+	return true;
+}
+</script>
+{/if}
+{template 'footer', $module}

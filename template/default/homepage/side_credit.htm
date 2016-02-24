@@ -1,0 +1,15 @@
+{if $file != 'credit'}
+<div class="side_head"><div><strong>{$SIDE}</strong></div></div>
+<div class="side_body">
+<!--{tag("table=credit&condition=status=3 and username='$username'&pagesize=".$side_num[$HS]."&order=addtime desc&template=null", -2)}-->
+<ul>
+{if $_tags}
+{loop $_tags $v}
+<li><a href="{userurl($username, 'file=credit&itemid='.$v['itemid'], $domain)}" title="{$v[title]}">{set_style($v[title], $v[style])}</a></li>
+{/loop}
+{else}
+<li>暂未上传</li>
+{/if}
+</ul>
+</div>
+{/if}

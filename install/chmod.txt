@@ -1,0 +1,15 @@
+announce/
+buy/
+cache/*
+company/
+exhibit/
+extend/
+file/*
+install/
+invest/
+job/
+news/
+quote/
+sell/
+config.inc.php
+index.html
